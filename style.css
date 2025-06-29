@@ -1,0 +1,662 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
+/* Universal Selector and Basic Setup */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* CSS Variables for Theming */
+:root {
+    --bg-color: #1f242d;
+    --second-bg-color: #323946;
+    --text-color: #fff;
+    --main-color: #0ef;
+    --nav-color: #1f242d;
+    --home-img-color: #388fdb66;
+    --about-img-color: #334769;
+    --form-box-color: #323946;
+
+    /* Section colors */
+    --about-one: #0a5947;
+    --about-two: #1e232d;
+    --bg-one: #0a5947;
+    --bg-two: #3e2e6dcc;
+    --project-one: #0d3b3bd4;
+    --project-two: #382965cc;
+    --contact-one: #0d3f3fd4;
+    --contact-two: #111825;
+}
+
+/* Light Mode Theme */
+body.light-mode {
+    --bg-color: #cfcdcd;
+    --second-bg-color: #e8e8e8;
+    --text-color: #1f242d;
+    --main-color: #007acc;
+    --nav-color: #e3e3e3;
+    --home-img-color: #334769;
+    --about-img-color: #021029;
+    --form-box-color: #d3d3d3;
+
+    --about-one: #f5f5f5;
+    --about-two: #e8e8e8;
+    --bg-one: #e8e8e8;
+    --bg-two: #f5f5f5;
+    --project-one: #f5f5f5;
+    --project-two: #e8e8e8;
+    --contact-one: #e8e8e8;
+    --contact-two: #e8e8e8;
+}
+
+
+html {
+    font-size: 62.5%;
+    overflow-x: hidden;
+}
+
+body {
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background .3s, color .3s;
+    /* Smooth transition for theme change */
+}
+
+section {
+    min-height: 90vh;
+    padding: 10rem 9% 2rem;
+}
+
+/* Header and Navbar */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 2rem 9%;
+    background: var(--nav-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    transition: background .3s;
+}
+
+.header.sticky {
+    border-bottom: .1rem solid rgba(0, 0, 0, .2);
+}
+
+.logo {
+    font-size: 2.5rem;
+    color: var(--text-color);
+    font-weight: 600;
+    cursor: default;
+}
+
+.navbar a {
+    font-size: 1.7rem;
+    color: var(--text-color);
+    margin-left: 4rem;
+    transition: .3s;
+}
+
+.navbar a:hover,
+.navbar a.active {
+    color: var(--main-color);
+}
+
+/* Theme and Menu Icons */
+#menu-icon {
+    font-size: 3.6rem;
+    color: var(--text-color);
+    display: none;
+    /* Hidden by default on large screens */
+}
+
+#theme-icon {
+    font-size: 2.4rem;
+    color: var(--text-color);
+    cursor: pointer;
+    margin-left: 2rem;
+}
+
+/* Home Section */
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.home-content h3 {
+    font-size: 3.2rem;
+    font-weight: 700;
+}
+
+.home-content h3:nth-of-type(2) {
+    margin-bottom: 2rem;
+}
+
+span {
+    color: var(--main-color);
+}
+
+.home-content {
+    margin-right: 0px;
+    padding-right: 10rem;
+}
+
+.home-content h1 {
+    font-size: 5.6rem;
+    font-weight: 700;
+    line-height: 1.3;
+}
+
+/* UPDATED: Container for image and blob shape */
+.home-img {
+    position: relative;
+    /* For positioning the blob */
+    width: 35vw;
+    height: 35vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: floatImage 4s ease-in-out infinite;
+    /* Move animation to the container */
+}
+
+/* NEW: The blob shape behind the home image */
+.home-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--home-img-color);
+    opacity: ;
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    transition: .5s ease;
+    animation: morph 8s ease-in-out infinite;
+    z-index: 1;
+    /* Place blob behind the image */
+}
+
+/* Image styles */
+.home-img img {
+    position: relative;
+    /* To place it on top of the blob */
+    z-index: 2;
+    /* Ensure image is on top */
+    width: 98%;
+    /* Slightly smaller than the blob container to let the blob show */
+    height: 99%;
+    /* Make it a square */
+    object-fit: cover;
+    /* Prevent image distortion */
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    /* Match the blob shape */
+    animation: morph 8s ease-in-out infinite;
+    /* Match the blob animation */
+}
+
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-2.4rem);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+/* NEW: Morphing animation for the blob shapes */
+@keyframes morph {
+    0% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+
+    50% {
+        border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
+    }
+
+    100% {
+        border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+    }
+}
+
+.home-content p {
+    font-size: 1.6rem;
+}
+
+.social-media a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    background: transparent;
+    border: .2rem solid var(--main-color);
+    border-radius: 50%;
+    font-size: 2rem;
+    color: var(--main-color);
+    margin: 3rem 1.5rem 3rem 0;
+    transition: .5s ease;
+}
+
+.social-media a:hover {
+    background: var(--main-color);
+    color: var(--second-bg-color);
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.btn {
+    display: inline-block;
+    padding: 1rem 2.8rem;
+    background: var(--main-color);
+    border-radius: 4rem;
+    box-shadow: 0 0 1rem var(--main-color);
+    font-size: 1.6rem;
+    color: var(--bg-color);
+    letter-spacing: .1rem;
+    font-weight: 600;
+    transition: .5s ease;
+}
+
+.btn:hover {
+    box-shadow: none;
+}
+
+/* About Section */
+.about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10rem;
+    background: var(--second-bg-color);
+    background-image: linear-gradient(0deg, var(--about-one), var(--about-two));
+}
+
+/* UPDATED: Container for about image and blob shape */
+.about-img {
+    position: relative;
+    width: 50vw;
+    height: 30vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* NEW: The blob shape for the about section */
+.about-img::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--about-img-color);
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    /* Different shape from home */
+    transition: .5s ease;
+    animation: morph 8s ease-in-out infinite 1s;
+    /* Offset animation start */
+    z-index: 1;
+}
+
+/* UPDATED: About image styles */
+.about-img img {
+    position: relative;
+    z-index: 2;
+    width: 97%;
+    height: 98%;
+    object-fit: cover;
+    border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+    /* Match the blob shape */
+    animation: morph 8s ease-in-out infinite 1s;
+    /* Match the blob animation */
+}
+
+.heading {
+    text-align: center;
+    font-size: 4.5rem;
+}
+
+.about-content {
+    margin: 50px;
+    padding: 30px;
+}
+
+.about-content h2 {
+    text-align: left;
+    line-height: 1.2;
+}
+
+.about-content h3 {
+    font-size: 2.6rem;
+}
+
+.about-content p {
+    font-size: 1.6rem;
+    margin: 2rem 0 3rem;
+}
+
+/* Background Section */
+.background {
+    background: var(--bg-color);
+    background-image: linear-gradient(180deg, var(--bg-one), var(--bg-two));
+}
+
+.background h2 {
+    margin-bottom: 5rem;
+}
+
+.background-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.background-container .background-box {
+    flex: 1 1 30rem;
+    background: var(--second-bg-color);
+    padding: 3rem 2rem 4rem;
+    border-radius: 2rem;
+    text-align: center;
+    border: .2rem solid var(--bg-color);
+    transition: .5s ease;
+}
+
+.background-container .background-box:hover {
+    border-color: var(--main-color);
+    transform: scale(1.02);
+}
+
+.background-box i {
+    font-size: 7rem;
+    color: var(--main-color);
+}
+
+.background-box h3 {
+    font-size: 2.6rem;
+}
+
+.background-box p {
+    font-size: 1.6rem;
+    margin: 1rem 0 3rem;
+}
+
+/* Projects Section */
+.projects {
+    background: var(--second-bg-color);
+    background-image: linear-gradient(0deg, var(--project-one), var(--project-two));
+}
+
+.projects h2 {
+    margin-bottom: 4rem;
+}
+
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.project-box {
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--bg-color);
+    overflow: hidden;
+    display: flex;
+}
+
+.project-box img {
+    width: 100%;
+    transition: .5s ease;
+}
+
+.project-box:hover img {
+    transform: scale(1.1);
+}
+
+.project-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, .1), var(--main-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+}
+
+.project-box:hover .project-layer {
+    transform: translateY(0);
+}
+
+.project-layer h4 {
+    font-size: 3rem;
+}
+
+.project-layer p {
+    font-size: 1.6rem;
+    margin: .3rem 0 1rem;
+}
+
+.project-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--text-color);
+    border-radius: 50%;
+}
+
+.project-layer a i {
+    font-size: 2rem;
+    color: var(--second-bg-color);
+}
+
+/* Contact Section */
+.contact {
+    background-image: linear-gradient(180deg, var(--contact-one), var(--contact-two));
+}
+
+.contact h2 {
+    margin-bottom: 3rem;
+}
+
+.contact form {
+    max-width: 70rem;
+    margin: 1rem auto;
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.contact form .input-box {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.contact form .input-box input,
+.contact form textarea {
+    width: 100%;
+    padding: 1.5rem;
+    font-size: 1.6rem;
+    color: var(--text-color);
+    background: var(--form-box-color);
+    border-radius: .8rem;
+    margin: .7rem 0;
+}
+
+.contact form .input-box input {
+    width: 49%;
+}
+
+.contact form textarea {
+    resize: none;
+}
+
+.contact form .btn {
+    margin-top: 2rem;
+    cursor: pointer;
+}
+
+/* Footer Section */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 2rem 9%;
+    background: var(--second-bg-color);
+}
+
+.footer-text p {
+    font-size: 1.6rem;
+}
+
+.footer-iconTop a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: .8rem;
+    background: var(--main-color);
+    border-radius: .8rem;
+    transition: .5s ease;
+}
+
+.footer-iconTop a:hover {
+    box-shadow: 0 0 1rem var(--main-color);
+}
+
+.footer-iconTop a i {
+    font-size: 2.4rem;
+    color: var(--second-bg-color);
+}
+
+
+/* RESPONSIVE DESIGN (BREAKPOINTS) */
+@media (max-width: 1200px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+@media (max-width: 991px) {
+    .header {
+        padding: 2rem 3%;
+    }
+
+    section {
+        padding: 10rem 3% 2rem;
+    }
+
+    .projects-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .footer {
+        padding: 2rem 3%;
+    }
+}
+
+@media (max-width: 768px) {
+    #menu-icon {
+        display: block;
+        /* Show hamburger menu */
+    }
+
+    .navbar {
+        position: absolute;
+        top: 100%;
+        left: -100%;
+        /* Hide off-screen by default */
+        width: 100%;
+        padding: 1rem 3%;
+        background: var(--bg-color);
+        border-top: .1rem solid rgba(0, 0, 0, .2);
+        box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .2);
+        transition: .3s;
+    }
+
+    .navbar.active {
+        left: 0;
+        /* Slide in when active */
+    }
+
+    .navbar a {
+        display: block;
+        font-size: 2rem;
+        margin: 3rem 0;
+    }
+
+    .home {
+        flex-direction: column;
+    }
+
+    .home-content h3 {
+        font-size: 2.6rem;
+    }
+
+    .home-content h1 {
+        font-size: 5rem;
+    }
+
+    /* UPDATED: Responsive image container */
+    .home-img {
+        width: 70vw;
+        height: 70vw;
+        margin-top: 4rem;
+    }
+
+    .about {
+        flex-direction: column-reverse;
+    }
+
+    /* UPDATED: Responsive image container */
+    .about-img {
+        width: 70vw;
+        height: 70vw;
+        margin-top: 4rem;
+    }
+
+    .projects h2 {
+        margin-bottom: 3rem;
+    }
+
+    .projects-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 450px) {
+    html {
+        font-size: 50%;
+    }
+
+    .contact form .input-box input {
+        width: 100%;
+    }
+}
