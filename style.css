@@ -28,8 +28,10 @@
     --about-two: #1e232d;
     --bg-one: #0a5947;
     --bg-two: #3e2e6dcc;
-    --project-one: #0d3b3bd4;
-    --project-two: #382965cc;
+    --skills-one: #233877;
+    --skills-two: #382965cc;
+    --project-one: #233877;
+    --project-two: #0d3b3bd4;
     --contact-one: #0d3f3fd4;
     --contact-two: #111825;
 }
@@ -51,6 +53,8 @@ body.light-mode {
     --bg-two: #f5f5f5;
     --project-one: #f5f5f5;
     --project-two: #e8e8e8;
+    --skills-one: ;
+    --skills-two: #382965cc;
     --contact-one: #e8e8e8;
     --contact-two: #e8e8e8;
 }
@@ -389,6 +393,10 @@ span {
     color: var(--main-color);
 }
 
+.fa-figma {
+    font-size: 500px;
+}
+
 .background-box h3 {
     font-size: 2.6rem;
 }
@@ -398,10 +406,91 @@ span {
     margin: 1rem 0 3rem;
 }
 
+/* Skills Section start*/
+.skills {
+    background: var(--second-bg-color);
+    background-image: linear-gradient(0deg, var(--skills-one), var(--skills-two));
+}
+
+.skills h2 {
+    margin-bottom: 4rem;
+}
+
+.skills-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.skills-box {
+    position: relative;
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem var(--bg-color);
+    overflow: hidden;
+    display: flex;
+}
+
+.skills-box img {
+    width: 100%;
+    transition: .5s ease;
+}
+
+.skills-box:hover img {
+    transform: scale(1.1);
+}
+
+.skills-layer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, .1), var(--main-color));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 0 4rem;
+    transform: translateY(100%);
+    transition: .5s ease;
+}
+
+.skills-box:hover .skills-layer {
+    transform: translateY(0);
+}
+
+.skills-layer h4 {
+    font-size: 3rem;
+}
+
+.skills-layer p {
+    font-size: 1.6rem;
+    margin: .3rem 0 1rem;
+}
+
+.skills-layer a {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 5rem;
+    height: 5rem;
+    background: var(--text-color);
+    border-radius: 50%;
+}
+
+.skills-layer a i {
+    font-size: 2rem;
+    color: var(--second-bg-color);
+}
+
+/* Skills Section end */
+
 /* Projects Section */
 .projects {
     background: var(--second-bg-color);
-    background-image: linear-gradient(0deg, var(--project-one), var(--project-two));
+    background-image: linear-gradient(180deg, var(--project-one), var(--project-two));
 }
 
 .projects h2 {
@@ -479,7 +568,7 @@ span {
 
 /* Contact Section */
 .contact {
-    background-image: linear-gradient(180deg, var(--contact-one), var(--contact-two));
+    background-image: linear-gradient(var(--contact-one), var(--contact-two));
 }
 
 .contact h2 {
