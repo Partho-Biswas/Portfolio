@@ -419,6 +419,7 @@ span {
 .skills-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-column: span 3;
     align-items: center;
     gap: 2.5rem;
 }
@@ -659,7 +660,7 @@ span {
     }
 
     section {
-        padding: 10rem 3% 2rem;
+        padding: 10rem 7% 2rem;
     }
 
     .projects-container {
@@ -705,6 +706,10 @@ span {
         flex-direction: column;
     }
 
+    .home-content {
+        padding: 0 10rem 0 2rem;
+    }
+
     .home-content h3 {
         font-size: 2.6rem;
     }
@@ -720,8 +725,17 @@ span {
         margin-top: 4rem;
     }
 
+    .background-container {
+        margin: 0 8vw 0;
+    }
+
     .about {
         flex-direction: column-reverse;
+    }
+
+    .about-content {
+        margin: 30px;
+        padding: 30px;
     }
 
     /* UPDATED: Responsive image container */
@@ -737,6 +751,7 @@ span {
 
     .projects-container {
         grid-template-columns: 1fr;
+        margin: 0 5vw 0;
     }
 }
 
@@ -748,4 +763,5 @@ span {
     .contact form .input-box input {
         width: 100%;
     }
+
 }
